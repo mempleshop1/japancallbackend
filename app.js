@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 require("dotenv/config");
 const cors = require("cors");
 const { Team } = require("./models/team");
-const e = require("express");
 
 const app = express();
 app.use(express.json());
