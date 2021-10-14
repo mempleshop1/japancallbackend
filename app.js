@@ -71,7 +71,7 @@ app.put("/markoncall", async (req, res) => {
   let team;
   if (req.body.adminnumber === "1") {
     team = await Team.findByIdAndUpdate(
-      "6167bfa8511a344134d81c97",
+      "6167d6479f99f2392d977339",
       {
         admin1: true,
       },
@@ -81,7 +81,7 @@ app.put("/markoncall", async (req, res) => {
     );
   } else if (req.body.adminnumber === "2") {
     team = await Team.findByIdAndUpdate(
-      "6167bfa8511a344134d81c97",
+      "6167d6479f99f2392d977339",
       {
         admin2: true,
       },
@@ -91,7 +91,7 @@ app.put("/markoncall", async (req, res) => {
     );
   } else if (req.body.adminnumber === "3") {
     team = await Team.findByIdAndUpdate(
-      "6167bfa8511a344134d81c97",
+      "6167d6479f99f2392d977339",
       {
         admin3: true,
       },
@@ -101,7 +101,7 @@ app.put("/markoncall", async (req, res) => {
     );
   } else if (req.body.adminnumber === "4") {
     team = await Team.findByIdAndUpdate(
-      "6167bfa8511a344134d81c97",
+      "6167d6479f99f2392d977339",
       {
         admin4: true,
       },
@@ -111,7 +111,7 @@ app.put("/markoncall", async (req, res) => {
     );
   } else {
     team = await Team.findByIdAndUpdate(
-      "6167bfa8511a344134d81c97",
+      "6167d6479f99f2392d977339",
       {
         admin5: true,
       },
@@ -129,7 +129,7 @@ app.put("/removefromcall", async (req, res) => {
   let team;
   if (req.body.adminnumber === "1") {
     team = await Team.findByIdAndUpdate(
-      "6167bfa8511a344134d81c97",
+      "6167d6479f99f2392d977339",
       {
         admin1: false,
       },
@@ -139,7 +139,7 @@ app.put("/removefromcall", async (req, res) => {
     );
   } else if (req.body.adminnumber === "2") {
     team = await Team.findByIdAndUpdate(
-      "6167bfa8511a344134d81c97",
+      "6167d6479f99f2392d977339",
       {
         admin2: false,
       },
@@ -149,7 +149,7 @@ app.put("/removefromcall", async (req, res) => {
     );
   } else if (req.body.adminnumber === "3") {
     team = await Team.findByIdAndUpdate(
-      "6167bfa8511a344134d81c97",
+      "6167d6479f99f2392d977339",
       {
         admin3: false,
       },
@@ -159,7 +159,7 @@ app.put("/removefromcall", async (req, res) => {
     );
   } else if (req.body.adminnumber === "4") {
     team = await Team.findByIdAndUpdate(
-      "6167bfa8511a344134d81c97",
+      "6167d6479f99f2392d977339",
       {
         admin4: false,
       },
@@ -169,7 +169,7 @@ app.put("/removefromcall", async (req, res) => {
     );
   } else {
     team = await Team.findByIdAndUpdate(
-      "6167bfa8511a344134d81c97",
+      "6167d6479f99f2392d977339",
       {
         admin5: false,
       },
