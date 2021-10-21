@@ -295,6 +295,25 @@ app.post("/removeadmin", async (req, res) => {
         .send({ admin: admin, message: "Admin deleted successfully !" });
 });
 
+app.put("/changecallstatus", async (req, res) => {
+    const admin = await Admin.findByIdAndUpdate(
+        req.body.adminid,
+        {
+            callactive: req.body.callstatus,
+        },
+        { new: true }
+    );
+
+    if (!admin)
+        return res
+            .status(400)
+            .send({ message: "Cannot update the call status !" });
+
+    return res
+        .status(200)
+        .send({ message: "Call status updated !", admin: admin });
+});
+
 app.listen(process.env.PORT, () => {
     console.log(`App listening`);
 });
