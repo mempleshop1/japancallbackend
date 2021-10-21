@@ -9,6 +9,10 @@ const adminSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    callactive: {
+        type: Boolean,
+        default: false,
+    },
 });
 
 exports.Admin = mongoose.model("Admin", adminSchema);

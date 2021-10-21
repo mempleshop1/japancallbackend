@@ -284,7 +284,7 @@ app.put("/changeadmin", async (req, res) => {
     return res.status(200).send({ message: "Admin updated !", admin: admin });
 });
 
-app.delete("/removeadmin", async (req, res) => {
+app.post("/removeadmin", async (req, res) => {
     const admin = await Admin.findByIdAndDelete(req.body.adminid);
 
     if (!admin)
