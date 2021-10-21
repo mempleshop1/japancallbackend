@@ -26,45 +26,17 @@ app.get("/", (req, res) => {
     res.send("Hello World!");
 });
 
-app.post("/createteam", async (req, res) => {
-    const team = new Team({
-        name: req.body.name,
-        admin1: false,
-        admin2: false,
-        admin3: false,
-        admin4: false,
-        admin5: false,
-    });
-
-    const created = await team.save();
-    if (!created) return res.status(400).send("Team cannot be created");
-
-    res.status(200).send({
-        team: team,
-        message: "Team was created successfully !",
-    });
-});
-
 app.get("/findfreeadmin", async (req, res) => {
-    const filter = {
-        name: "team1",
-    };
-
-    const team = await Team.find(filter);
-
+    const admins = await Admin.find();
     let peerid = "notavailable";
-
-    if (team[0].admin1 === false) {
-        peerid = "japancallteam1admin1";
-    } else if (team[0].admin2 === false) {
-        peerid = "japancallteam1admin2";
-    } else if (team[0].admin3 === false) {
-        peerid = "japancallteam1admin3";
-    } else if (team[0].admin4 === false) {
-        peerid = "japancallteam1admin4";
-    } else if (team[0].admin5 === false) {
-        peerid = "japancallteam1admin5";
-    }
+    admins.forEach((admin) => {
+        if (admin.callactive === false) {
+            peerid = `japancallteam1` + admin.username;
+            return false;
+        } else {
+            return true;
+        }
+    });
 
     res.status(200).send({ peerid: peerid, message: "Successful !" });
 });
