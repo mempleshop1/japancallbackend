@@ -2,7 +2,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv/config");
 const cors = require("cors");
-const { Team } = require("./models/team");
 const { Superadmin } = require("./models/superadmins");
 const { Admin } = require("./models/admins");
 
@@ -42,119 +41,27 @@ app.get("/findfreeadmin", async (req, res) => {
 });
 
 app.put("/markoncall", async (req, res) => {
-    let team;
-    if (req.body.adminnumber === "1") {
-        team = await Team.findByIdAndUpdate(
-            "6167d6479f99f2392d977339",
-            {
-                admin1: true,
-            },
-            {
-                new: true,
-            }
-        );
-    } else if (req.body.adminnumber === "2") {
-        team = await Team.findByIdAndUpdate(
-            "6167d6479f99f2392d977339",
-            {
-                admin2: true,
-            },
-            {
-                new: true,
-            }
-        );
-    } else if (req.body.adminnumber === "3") {
-        team = await Team.findByIdAndUpdate(
-            "6167d6479f99f2392d977339",
-            {
-                admin3: true,
-            },
-            {
-                new: true,
-            }
-        );
-    } else if (req.body.adminnumber === "4") {
-        team = await Team.findByIdAndUpdate(
-            "6167d6479f99f2392d977339",
-            {
-                admin4: true,
-            },
-            {
-                new: true,
-            }
-        );
-    } else {
-        team = await Team.findByIdAndUpdate(
-            "6167d6479f99f2392d977339",
-            {
-                admin5: true,
-            },
-            {
-                new: true,
-            }
-        );
-    }
-    if (!team) return res.status(400).send("Cannot be updated!");
+    const admin = await Admin.findByIdAndUpdate(
+        req.body.adminid,
+        { callactive: true },
+        { new: true }
+    );
 
-    res.status(200).send({ team: team, message: "Successful !" });
+    if (!admin) return res.status(400).send("Cannot update the call status");
+
+    res.status(200).send({ message: "Marked on call !", admin: admin });
 });
 
 app.put("/removefromcall", async (req, res) => {
-    let team;
-    if (req.body.adminnumber === "1") {
-        team = await Team.findByIdAndUpdate(
-            "6167d6479f99f2392d977339",
-            {
-                admin1: false,
-            },
-            {
-                new: true,
-            }
-        );
-    } else if (req.body.adminnumber === "2") {
-        team = await Team.findByIdAndUpdate(
-            "6167d6479f99f2392d977339",
-            {
-                admin2: false,
-            },
-            {
-                new: true,
-            }
-        );
-    } else if (req.body.adminnumber === "3") {
-        team = await Team.findByIdAndUpdate(
-            "6167d6479f99f2392d977339",
-            {
-                admin3: false,
-            },
-            {
-                new: true,
-            }
-        );
-    } else if (req.body.adminnumber === "4") {
-        team = await Team.findByIdAndUpdate(
-            "6167d6479f99f2392d977339",
-            {
-                admin4: false,
-            },
-            {
-                new: true,
-            }
-        );
-    } else {
-        team = await Team.findByIdAndUpdate(
-            "6167d6479f99f2392d977339",
-            {
-                admin5: false,
-            },
-            {
-                new: true,
-            }
-        );
-    }
-    if (!team) return res.status(400).send("Cannot be updated!");
+    const admin = await Admin.findByIdAndUpdate(
+        req.body.adminid,
+        { callactive: false },
+        { new: true }
+    );
 
-    res.status(200).send({ team: team, message: "Successful !" });
+    if (!admin) return res.status(400).send("Cannot update the call status");
+
+    res.status(200).send({ message: "Removed on call !", admin: admin });
 });
 
 app.post("/createsuperadmin", async (req, res) => {
